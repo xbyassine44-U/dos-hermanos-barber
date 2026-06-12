@@ -83,30 +83,8 @@ export default function Location() {
               style={{ border: 0, filter: "invert(0.85) hue-rotate(180deg) saturate(0.4)" }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src={`https://www.google.com/maps/embed/v1/place?key=${
-                process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""
-              }&q=${encodeURIComponent(siteData.location.address)}&center=${coords.lat},${coords.lng}&zoom=15&language=fr`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(siteData.location.address)}&output=embed&z=15&hl=fr`}
             />
-            {!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY && (
-              <div className="w-full h-full flex items-center justify-center bg-obsidian-800">
-                <div className="text-center p-8">
-                  <p className="font-mono text-xs tracking-wider text-frost-dark/40 mb-3">CARTE INTÉGRÉE</p>
-                  <p className="text-3xl mb-3">📍</p>
-                  <p className="text-frost/60 text-sm mb-2">{siteData.location.address}</p>
-                  <p className="font-mono text-xs text-frost-dark/30">
-                    Ajoutez une clé API Google Maps dans <span className="text-gold/50">.env.local</span>
-                  </p>
-                  <a
-                    href={siteData.location.googleMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block mt-4 px-5 py-2.5 font-mono text-xs text-gold border border-gold/30 hover:border-gold/60 transition-colors"
-                  >
-                    Voir sur Google Maps →
-                  </a>
-                </div>
-              </div>
-            )}
           </motion.div>
         </div>
       </div>
