@@ -19,6 +19,7 @@ export default function ShopVideo() {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-5 mb-4">
             <span className="gold-gradient">Découvrez le Salon</span>
           </h2>
+          <div className="divider-gold w-24 mx-auto my-6" />
           <p className="text-frost/50 max-w-xl mx-auto font-light text-lg">
             Plongez dans l&apos;atmosphère de Dos Hermanos. Un espace où le luxe discret rencontre la tradition du barbering.
           </p>
@@ -29,19 +30,20 @@ export default function ShopVideo() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative max-w-5xl mx-auto aspect-video frosted-metal overflow-hidden group"
+          className="relative max-w-5xl mx-auto aspect-video glass overflow-hidden group"
         >
+          <div className="absolute inset-0 shimmer" />
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover opacity-90"
             poster="/images/pagina-principal.jpg"
           >
-            <source src="/videos/shop-video.mp4" type="video/mp4" />
+            <source src="/videos/shop-tour.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-obsidian/20 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-obsidian/20 z-10" />
           <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-obsidian/80 to-transparent z-20">
             <div className="flex items-center gap-3">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
@@ -62,7 +64,7 @@ export default function ShopVideo() {
             <span className="text-frost-dark/10">·</span>
             <span>Format cinématographique</span>
             <span className="text-frost-dark/10">·</span>
-            <span>DOS AMIGOS New Style</span>
+            <span>Dos Hermanos</span>
           </div>
         </motion.div>
       </div>

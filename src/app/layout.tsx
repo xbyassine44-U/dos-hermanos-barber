@@ -4,9 +4,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Dos Hermanos | Barber Shop d'Exception — Tétouan",
+  metadataBase: new URL("https://doshermanos.ma"),
+  title: "Dos Hermanos | Barber Shop Premium — Tétouan",
   description:
-    "Barber shop premium à Tétouan. Coupe homme, taille de barbe, rasage traditionnel et soins capillaires. Réservez en ligne.",
+    "Barber shop d'exception à Tétouan – 22 Av. Seville. Coupe homme, taille de barbe, rasage traditionnel et soins capillaires. Réservez en ligne.",
   keywords: [
     "barber tetouan",
     "coiffeur tetouan",
@@ -15,11 +16,13 @@ export const metadata: Metadata = {
     "barber shop maroc",
     "rasage traditionnel tetouan",
     "salon coiffure homme tetouan",
+    "22 av seville tetouan",
+    "barber tetouan 93000",
   ],
   openGraph: {
     title: "Dos Hermanos | L'Art du Grooming — Tétouan",
     description:
-      "Barber shop d'exception à Tétouan. Coupe signature, barbe, rasage traditionnel.",
+      "Barber shop d'exception à Tétouan. Coupe signature, barbe, rasage traditionnel. 22 Av. Seville.",
     locale: "fr_FR",
     type: "website",
     siteName: "Dos Hermanos Barber",

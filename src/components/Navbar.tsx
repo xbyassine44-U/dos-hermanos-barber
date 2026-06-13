@@ -8,7 +8,7 @@ const links = [
   { id: "hero", label: "Accueil" },
   { id: "services", label: "Services" },
   { id: "gallery", label: "Galerie" },
-  { id: "video", label: "Présentation" },
+  { id: "reviews", label: "Avis" },
   { id: "booking", label: "Réservation" },
   { id: "location", label: "Contact" },
 ];
@@ -35,14 +35,21 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-obsidian/85 backdrop-blur-2xl border-b border-gold/10 shadow-2xl shadow-black/50"
-          : "bg-transparent"
+          ? "bg-obsidian/80 backdrop-blur-2xl border-b border-gold/10 shadow-2xl shadow-black/50"
+          : "bg-gradient-to-b from-obsidian/60 to-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <button onClick={() => scrollTo("hero")} className="group flex items-center gap-3">
-            <img src="/images/logo-dos-hermanos.jpg" alt="Dos Hermanos" className="h-10 w-auto object-contain" />
+            <img
+              src="/images/logo-dos-hermanos.jpg"
+              alt="Dos Hermanos"
+              className="h-10 w-auto object-contain brightness-110"
+            />
+            <span className="hidden sm:block text-lg font-heading font-bold gold-gradient tracking-wide">
+              {siteData.name}
+            </span>
           </button>
 
           <div className="hidden lg:flex items-center gap-1">
@@ -50,7 +57,7 @@ export default function Navbar() {
               <button
                 key={l.id}
                 onClick={() => scrollTo(l.id)}
-                className="relative px-4 py-2 text-sm font-body text-frost/60 hover:text-gold transition-colors duration-300 group tracking-wide"
+                className="relative px-4 py-2 text-sm font-body text-frost/50 hover:text-gold transition-colors duration-300 group tracking-wide"
               >
                 {l.label}
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gold transition-all duration-300 group-hover:w-3/4" />
@@ -102,7 +109,7 @@ export default function Navbar() {
                 <button
                   key={l.id}
                   onClick={() => scrollTo(l.id)}
-                  className="w-full text-left px-4 py-3 text-sm font-body text-frost/60 hover:text-gold hover:bg-gold/5 transition-all"
+                  className="w-full text-left px-4 py-3 text-sm font-body text-frost/50 hover:text-gold hover:bg-gold/5 transition-all"
                 >
                   {l.label}
                 </button>
