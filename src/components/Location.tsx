@@ -6,7 +6,7 @@ import { siteData, whatsappUrl, instagramUrl } from "@/data/siteData";
 export default function Location() {
   return (
     <section id="location" className="relative py-28 lg:py-40">
-      <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-wood/8 to-obsidian" />
+      <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-sepia/20 to-obsidian" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

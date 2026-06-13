@@ -1,11 +1,29 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function ShopVideo() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="video" className="relative py-28 lg:py-40">
-      <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-wood/10 to-obsidian" />
+      <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-sepia/20 to-obsidian" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -31,18 +49,22 @@ export default function ShopVideo() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative max-w-5xl mx-auto aspect-video glass overflow-hidden group"
+          ref={sectionRef}
         >
           <div className="absolute inset-0 shimmer" />
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-90"
-            poster="/images/pagina-principal.jpg"
-          >
-            <source src="/videos/shop-tour.mp4" type="video/mp4" />
-          </video>
+          {isVisible && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 w-full h-full object-cover opacity-90"
+              poster="/images/gallery/naturales.jpg"
+            >
+              <source src="/videos/shop-tour.mp4" type="video/mp4" />
+            </video>
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-obsidian/20 z-10" />
           <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-obsidian/80 to-transparent z-20">
             <div className="flex items-center gap-3">

@@ -44,12 +44,12 @@ export const siteData = {
     { id: 8, name: "Pack Prestige", price: "150 DH", duration: "75 min", badge: "VIP" },
   ],
   gallery: [
-    { id: 1, src: "/images/pagina-principal.jpg", alt: "Coupe signature Dos Hermanos", category: "Coupe" },
-    { id: 2, src: "/images/whatsapp-ref.jpg", alt: "Taille de barbe premium", category: "Barbe" },
-    { id: 3, src: "/images/pagina-principal.jpg", alt: "Ambiance du salon", category: "Salon" },
-    { id: 4, src: "/images/whatsapp-ref.jpg", alt: "Rasage traditionnel", category: "Rasage" },
-    { id: 5, src: "/images/pagina-principal.jpg", alt: "Style & élégance", category: "Style" },
-    { id: 6, src: "/images/whatsapp-ref.jpg", alt: "L'équipe Dos Hermanos", category: "Équipe" },
+    { id: 1, src: "/images/gallery/high-precision.jpg", alt: "Fade haute précision Dos Hermanos", category: "Coupe" },
+    { id: 2, src: "/images/gallery/naturales.jpg", alt: "Photos naturelles du salon", category: "Salon" },
+    { id: 3, src: "/images/gallery/style-details.jpg", alt: "Style et détails raffinés", category: "Style" },
+    { id: 4, src: "/images/gallery/taper-fade.jpg", alt: "Taper Fade technique", category: "Coupe" },
+    { id: 5, src: "/images/gallery/high-precision.jpg", alt: "Barbe premium taillée", category: "Barbe" },
+    { id: 6, src: "/images/gallery/naturales.jpg", alt: "Ambiance Dark Academia", category: "Salon" },
   ],
   reviews: [
     {

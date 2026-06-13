@@ -22,7 +22,7 @@ const cardVariants = {
 
 const badgeStyles: Record<string, string> = {
   "Populaire": "bg-gold/15 text-gold border-gold/30",
-  "Meilleur Rapport": "bg-wood-light/30 text-frost border-wood-faded/30",
+  "Meilleur Rapport": "bg-anthracite/30 text-frost border-anthracite-600/30",
   "Artisanal": "bg-frost/5 text-frost-muted border-frost/10",
   "VIP": "bg-gold text-obsidian border-gold",
 };
@@ -30,7 +30,7 @@ const badgeStyles: Record<string, string> = {
 export default function Services() {
   return (
     <section id="services" className="relative py-28 lg:py-40">
-      <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-wood/5 to-obsidian" />
+      <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-sepia/15 to-obsidian" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -61,7 +61,7 @@ export default function Services() {
             <motion.div
               key={svc.id}
               variants={cardVariants}
-              className="relative group glass p-7 transition-all duration-500 hover:border-gold/20 hover:shadow-lg hover:shadow-gold/5"
+              className="relative group glass-card p-7"
             >
               {svc.badge && (
                 <span className={`absolute -top-2.5 right-4 px-3 py-1 font-mono text-[10px] tracking-widest uppercase border ${badgeStyles[svc.badge] || "bg-obsidian-700 text-frost/60 border-gold/15"}`}>

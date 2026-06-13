@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["framer-motion"],
   },
+  serverExternalPackages: [],
 };
+
+const host = process.env.HOST || "0.0.0.0";
 
 export default nextConfig;

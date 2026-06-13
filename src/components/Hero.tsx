@@ -1,11 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { siteData, whatsappUrl } from "@/data/siteData";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -15,6 +17,12 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, 200]);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.style.opacity = videoLoaded ? "1" : "0";
+    }
+  }, [videoLoaded]);
+
   return (
     <section
       id="hero"
@@ -22,30 +30,46 @@ export default function Hero() {
       className="relative h-screen min-h-[700px] max-h-[1000px] overflow-hidden"
     >
       <motion.div style={{ scale }} className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-obsidian/80 via-obsidian/40 to-wood/70 z-10" />
-        <div className="absolute inset-0 z-[3] opacity-[0.15] pointer-events-none" style={{
+        {/* Core overlays */}
+        <div className="absolute inset-0 bg-gradient-to-br from-obsidian/85 via-obsidian/50 to-anthracite/70 z-10" />
+        <div className="absolute inset-0 z-[3] opacity-[0.12] pointer-events-none" style={{
           backgroundImage: `
-            radial-gradient(ellipse at 25% 50%, rgba(201,168,76,0.25) 0%, transparent 60%),
-            radial-gradient(ellipse at 75% 30%, rgba(201,168,76,0.1) 0%, transparent 40%),
-            radial-gradient(ellipse at 50% 85%, rgba(61,35,23,0.4) 0%, transparent 50%)
+            radial-gradient(ellipse at 25% 50%, rgba(201,168,76,0.2) 0%, transparent 60%),
+            radial-gradient(ellipse at 75% 30%, rgba(201,168,76,0.08) 0%, transparent 40%),
+            radial-gradient(ellipse at 50% 85%, rgba(43,43,43,0.4) 0%, transparent 50%)
           `,
         }} />
+
+        {/* Terminal grid overlay */}
         <div className="absolute inset-0 z-[4] opacity-[0.04] pointer-events-none" style={{
-          backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(201,168,76,0.08) 49px, rgba(201,168,76,0.08) 50px), repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(201,168,76,0.08) 49px, rgba(201,168,76,0.08) 50px)`,
+          backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(201,168,76,0.06) 49px, rgba(201,168,76,0.06) 50px), repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(201,168,76,0.06) 49px, rgba(201,168,76,0.06) 50px)`,
         }} />
-        <div className="absolute inset-0 z-[2] opacity-30" style={{
-          background: `radial-gradient(circle at 50% 50%, rgba(201,168,76,0.05) 0%, transparent 70%)`,
+
+        {/* Scanline effect */}
+        <div className="absolute inset-0 z-[4] opacity-[0.02] pointer-events-none" style={{
+          background: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.4) 2px, rgba(0,0,0,0.4) 4px)`,
         }} />
+
+        <div className="absolute inset-0 z-[2] opacity-20" style={{
+          background: `radial-gradient(circle at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%)`,
+        }} />
+
+        {/* Video with lazy loading - preload none for LCP optimization */}
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          poster="/images/pagina-principal.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
+          preload="none"
+          poster="/images/gallery/high-precision.jpg"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          onCanPlay={() => setVideoLoaded(true)}
         >
           <source src="/videos/hero-video.mp4" type="video/mp4" />
         </video>
+
+        {/* Letterbox bars */}
         <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-obsidian via-obsidian/80 to-transparent z-[5]" />
         <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-obsidian to-transparent z-[5]" />
       </motion.div>
@@ -61,6 +85,7 @@ export default function Hero() {
           className="mb-6"
         >
           <span className="inline-block font-mono text-xs tracking-[0.3em] uppercase text-gold/60 px-4 py-2 border border-gold/15 glass">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold animate-pulse mr-2 align-middle" />
             Tétouan — Maroc
           </span>
         </motion.div>
@@ -73,6 +98,19 @@ export default function Hero() {
         >
           <span className="gold-gradient text-glow-strong">{siteData.name}</span>
         </motion.h1>
+
+        {/* Terminal-style subtitle with cursor */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.35, ease: "easeOut" }}
+          className="flex items-center justify-center gap-3 mb-3"
+        >
+          <span className="w-12 h-px bg-gradient-to-r from-transparent to-gold/30" />
+          <span className="font-mono text-xs text-gold/50 tracking-[0.2em] uppercase">_</span>
+          <span className="font-mono text-xs text-frost/30 tracking-[0.25em] uppercase">Best Barber Tétouan</span>
+          <span className="w-12 h-px bg-gradient-to-l from-transparent to-gold/30" />
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -93,6 +131,8 @@ export default function Hero() {
           <span className="font-mono text-xs text-frost/40 tracking-wider">Ouvert aujourd'hui</span>
           <span className="text-frost/20">|</span>
           <span className="font-mono text-xs text-gold/50">★ 5.0</span>
+          <span className="text-frost/20">|</span>
+          <span className="inline-block terminal-cursor" />
         </motion.div>
 
         <motion.div
@@ -105,7 +145,7 @@ export default function Hero() {
             href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative px-10 py-4 overflow-hidden"
+            className="group relative px-10 py-4 overflow-hidden rounded-card"
           >
             <span className="absolute inset-0 gold-gradient-solid transition-transform duration-500 group-hover:scale-105" />
             <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-gold-light via-gold to-gold-dark" />
@@ -115,7 +155,7 @@ export default function Hero() {
           </a>
           <button
             onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-            className="group px-10 py-4 border border-gold/20 hover:border-gold/50 transition-all duration-500"
+            className="group px-10 py-4 border border-gold/20 hover:border-gold/50 transition-all duration-500 rounded-card"
           >
             <span className="font-body text-sm tracking-[0.15em] uppercase text-frost/50 group-hover:text-gold transition-colors duration-500">
               Nos Services
@@ -135,7 +175,7 @@ export default function Hero() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-frost/20">Scroll</span>
+          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-frost/20">_ Scroll _</span>
           <div className="w-[1px] h-8 bg-gradient-to-b from-gold/30 to-transparent" />
         </motion.div>
       </motion.div>
